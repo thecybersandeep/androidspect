@@ -184,15 +184,6 @@ AndroidSpect/
   README.md
 ```
 
-## Security model
-
-* Password is set on first run and shown only in the on-device app. Browser sign-in uses a session cookie (HttpOnly, Secure, SameSite=Strict).
-* Failed sign-ins are rate-limited per IP with exponential backoff and lockout.
-* HTTPS only. The server generates a self-signed certificate the first time it starts. Its SHA-256 fingerprint is shown on the phone so you can verify the one your browser sees.
-* `Host` header is restricted to `localhost`, `127.0.0.1`, and the current LAN IPv4 of the device. DNS-rebinding requests are rejected.
-* All write operations (clear data, force-stop, prefs write, exec) are POST.
-* The on-phone `su` grant is required. Without it the server starts but every privileged primitive returns an error.
-* No analytics, no crash reporters, no auto-update, no outbound network calls of any kind.
 
 ## Stack
 
