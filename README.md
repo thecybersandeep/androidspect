@@ -2,11 +2,6 @@
 
 Runtime audit tool for installed Android apps. Runs on a rooted phone, exposes an HTTPS dashboard from the device, and lets you browse any app's private storage from your laptop browser.
 
-The dynamic-analysis sibling of:
-
-* [apkauditor.com](https://apkauditor.com) for static APK analysis
-* [ipaauditor.com](https://ipaauditor.com) for static IPA analysis
-* [adbauditor.com](https://adbauditor.com) for live ADB audit over WebUSB
 
 ## What it does
 
