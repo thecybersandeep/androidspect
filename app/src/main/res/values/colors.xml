@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="lens_primary">#7C5CFF</color>
+    <color name="lens_primary_dark">#5538D6</color>
+    <color name="lens_accent">#22D3EE</color>
+    <color name="lens_bg">#0B0E1A</color>
+    <color name="lens_surface">#131727</color>
+    <color name="lens_text">#E6E9F2</color>
+    <color name="lens_text_muted">#8C93AD</color>
+    <color name="lens_danger">#FF5470</color>
+    <color name="lens_ok">#36D399</color>
+</resources>

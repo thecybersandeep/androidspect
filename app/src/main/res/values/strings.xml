@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AndroidSpect</string>
+    <string name="server_notification_channel">AndroidSpect Server</string>
+    <string name="server_notification_title">AndroidSpect is running</string>
+    <string name="server_notification_text">Web UI: https://%1$s:%2$d</string>
+    <string name="root_unavailable">Root access is required. Grant superuser permission and try again.</string>
+</resources>
