@@ -1,7 +1,12 @@
 # AndroidSpect
 
-Runtime audit tool for installed Android apps. Runs on a rooted phone, exposes an HTTPS dashboard from the device, and lets you browse any app's private storage from your laptop browser.
+Runtime audit tool for installed Android apps. Runs on a rooted phone, exposes an HTTPS dashboard from the device, and lets you browse any app's private storage from any browser on your network.
 
+The dynamic-analysis sibling of:
+
+* [apkauditor.com](https://apkauditor.com) for static APK analysis
+* [ipaauditor.com](https://ipaauditor.com) for static IPA analysis
+* [adbauditor.com](https://adbauditor.com) for live ADB audit over WebUSB
 
 ## What it does
 
@@ -47,9 +52,9 @@ Core-library desugaring brings `java.time`, `java.util.function`, and `java.util
 2. Copy it to the phone and tap to install (enable "Install unknown apps" for the file manager you use).
 3. Open AndroidSpect, tap **Start server**. Your root manager (Magisk / KernelSU) prompts for `su`. Grant it.
 4. The phone screen now shows an `https://<phone-ip>:8008` URL, a SHA-256 fingerprint, and a six-character browser password.
-5. Open that URL on your laptop browser.
+5. Open that URL in any browser on the same network.
 
-If the phone and laptop are on the same Wi-Fi you can use the LAN IP directly.
+If the phone and your computer are on the same Wi-Fi you can use the LAN IP directly.
 
 The shipped APK is a debug build, signed with Android's standard debug key. That keeps install simple (no custom-keystore trust prompt) and the package id stays `com.androidspect` so it upgrades cleanly between versions.
 
@@ -82,7 +87,7 @@ The browser dashboard binds `0.0.0.0:8008` on the phone. On a physical device on
 adb forward tcp:8008 tcp:8008
 ```
 
-Then open `https://localhost:8008/` on your laptop. AVDs need root, so use a rooted system image (Magisk-on-AVD via rootAVD works on system image 34).
+Then open `https://localhost:8008/` in your browser. AVDs need root, so use a rooted system image (Magisk-on-AVD via rootAVD works on system image 34).
 
 ## Certificate warning on first browser visit
 
@@ -184,6 +189,15 @@ AndroidSpect/
   README.md
 ```
 
+## Security model
+
+* Password is set on first run and shown only in the on-device app. Browser sign-in uses a session cookie (HttpOnly, Secure, SameSite=Strict).
+* Failed sign-ins are rate-limited per IP with exponential backoff and lockout.
+* HTTPS only. The server generates a self-signed certificate the first time it starts. Its SHA-256 fingerprint is shown on the phone so you can verify the one your browser sees.
+* `Host` header is restricted to `localhost`, `127.0.0.1`, and the current LAN IPv4 of the device. DNS-rebinding requests are rejected.
+* All write operations (clear data, force-stop, prefs write, exec) are POST.
+* The on-phone `su` grant is required. Without it the server starts but every privileged primitive returns an error.
+* No analytics, no crash reporters, no auto-update, no outbound network calls of any kind.
 
 ## Stack
 
