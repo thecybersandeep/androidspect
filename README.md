@@ -2,12 +2,6 @@
 
 Runtime audit tool for installed Android apps. Runs on a rooted phone, exposes an HTTPS dashboard from the device, and lets you browse any app's private storage from any browser on your network.
 
-The dynamic-analysis sibling of:
-
-* [apkauditor.com](https://apkauditor.com) for static APK analysis
-* [ipaauditor.com](https://ipaauditor.com) for static IPA analysis
-* [adbauditor.com](https://adbauditor.com) for live ADB audit over WebUSB
-
 ## What it does
 
 Static inspection of any installed app on the device:
@@ -18,7 +12,6 @@ Static inspection of any installed app on the device:
 * Decoded `AndroidManifest.xml` with summary cards
 * Components list (activities, services, receivers, providers) with the exported badge in red, name filter, exported-only toggle, sort exported-first
 * Native libraries list per ABI with size and stripped-symbols flag, one-click `.so` download
-* CTA into apkauditor.com for the heavy-weight component exploit research
 
 Live runtime:
 
@@ -126,7 +119,7 @@ Decoded manifest with summary chips on top.
 
 ![Manifest decoder](screenshots/04-manifest.png)
 
-Components inspector with exported badge, filter, exported-only toggle, and the apkauditor.com CTA strip.
+Components inspector with exported badge, filter and exported-only toggle.
 
 ![Components inspector](screenshots/05-components.png)
 
@@ -216,6 +209,6 @@ AndroidSpect/
 
 ## License
 
-Not yet decided. Until then, all rights reserved.
+All rights reserved.
 
 Author: Sandeep Wawdane.
